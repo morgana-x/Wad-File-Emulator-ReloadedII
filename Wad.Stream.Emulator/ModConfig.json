@@ -1,9 +1,9 @@
 {
-  "ModId": "Wad.Stream.Emulator",
+  "ModId": "reloaded.universal.fileemulationframework.wad",
   "ModName": "Wad Emulator for File Emulation Framework",
   "ModAuthor": "morgana",
   "ModVersion": "1.0.0",
-  "ModDescription": "Emulates WAD Archives by Abstraction Games",
+  "ModDescription": "Emulates WAD Archives by Abstraction Games. Allows mods to add or replace existing files using files on disk.",
   "ModDll": "Wad.Stream.Emulator.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/Wad.Stream.Emulator.dll",
@@ -13,10 +13,23 @@
   "IsLibrary": true,
   "ReleaseMetadataFileName": "Wad.Stream.Emulator.ReleaseMetadata.json",
   "PluginData": {
+     "GitHubDependencies": {
+      "IdToConfigMap": {
+        "reloaded.sharedlib.hooks": {
+          "Config": {
+            "UserName": "Sewer56",
+            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
+            "UseReleaseTag": true,
+            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },
+          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+        }
+      }
+    },
     "GitHubRelease": {
       "UserName": "morgana-x",
       "RepositoryName": "Wad-File-Emulator-ReloadedII",
-      "UseReleaseTag": true,
+      "UseReleaseTag": false,
       "AssetFileName": "Mod.zip"
     }
   },
@@ -26,5 +39,5 @@
   ],
   "OptionalDependencies": [],
   "SupportedAppId": [],
-  "ProjectUrl": ""
+  "ProjectUrl": "https://github.com/morgana-x/Wad-File-Emulator-ReloadedII"
 }
