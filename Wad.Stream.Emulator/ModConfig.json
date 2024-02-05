@@ -1,0 +1,23 @@
+{
+  "ModId": "Wad.Stream.Emulator",
+  "ModName": "Wad Stream Emulator",
+  "ModAuthor": "morgana",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Emulates WAD Archives by Abstraction Games",
+  "ModDll": "Wad.Stream.Emulator.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/Wad.Stream.Emulator.dll",
+  "ModR2RManagedDll64": "x64/Wad.Stream.Emulator.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "IsLibrary": true,
+  "ReleaseMetadataFileName": "Wad.Stream.Emulator.ReleaseMetadata.json",
+  "PluginData": {},
+  "IsUniversalMod": true,
+  "ModDependencies": [
+    "reloaded.universal.fileemulationframework"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [],
+  "ProjectUrl": ""
+}

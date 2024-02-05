@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Wad.Stream.Emulator": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "RELOADEDIIMODS": "C:\\Users\\hphil\\Desktop\\Reloaded-II\\Mods"
+      },
+      "hotReloadEnabled": true
+    }
+  }
+}
