@@ -1,6 +1,6 @@
 # Wad-File-Emulator-ReloadedII
 
-A reloaded II mod using the [File Emulation Framework](https://github.com/Sewer56/FileEmulationFramework) that emulates Danganronpa WAD files, allowing ReloadedII mods for the game that don't actually touch the physical wad files
+A [Reloaded II mod](https://github.com/Reloaded-Project/Reloaded-II) using the [File Emulation Framework](https://github.com/Sewer56/FileEmulationFramework) that emulates Danganronpa WAD files, allowing ReloadedII mods for the game that don't actually touch the physical wad files
 
 # How to make a mod that uses Wad File Emulator
 Add Wad File Emulator For File Emulation Framework as a mod dependency
