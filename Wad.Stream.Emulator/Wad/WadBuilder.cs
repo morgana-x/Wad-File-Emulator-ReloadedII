@@ -43,70 +43,59 @@ namespace Wad.Stream.Emulator.Wad
             WadLib.Wad wad = new WadLib.Wad(stream);
 
             System.IO.Stream headerStream = new MemoryStream();
-
+            wad.WriteHeader(headerStream);
 
             long oldWadDataSectionOffset = wad.DataSectionOffset;
 
 
             List<WadFileEntry> newFileEntries = new List<WadFileEntry>();
-            Dictionary<WadFileEntry, WadFileEntry> oldNewEntryDict = new Dictionary<WadFileEntry, WadFileEntry>();
 
-            bool disableCustomFiles = true;
-            long offset = 0;
-            foreach (var entry in wad.FileEntries) // SOMETHING IS WRONG WITH THE HEADER PART
-            {
-                var newEntry = entry;
-                var oldEntry = entry;
-
-                newEntry.FileOffset = offset;
-                if (_customFiles.ContainsKey(oldEntry.FileName) && !disableCustomFiles) // THIS BREAKS STUFF 
-                {
-                    newEntry.FileSize = (long)_customFiles[oldEntry.FileName].Length;
-                }
-
-                newFileEntries.Add(newEntry);
-                //oldFileEntries.Add(oldEntry);
-                oldNewEntryDict.Add(oldEntry, newEntry);
-
-                offset += newEntry.FileSize;
-            }
-            wad.FileEntries = newFileEntries;
-
-            wad.WriteHeader(headerStream);
+            bool disableCustomFiles = false;
+            long fileOffset = 0;
 
             var pairs = new List<StreamOffsetPair<System.IO.Stream>>()
             {
                 // Add Header
                 new (headerStream, OffsetRange.FromStartAndLength(0, headerStream.Length))
             };
-            wad.DataSectionOffset = headerStream.Length;
 
-            //wad.WadStream = null;
-
-            
-            foreach ( var pair in oldNewEntryDict) // THIS ALL WORKS!
+            foreach (var entry in wad.FileEntries) // SOMETHING IS WRONG WITH THE HEADER PART
             {
-                var oldEntry = pair.Key;
-                var newEntry = pair.Value;
-
-                OffsetRange range = OffsetRange.FromStartAndLength(wad.DataSectionOffset + newEntry.FileOffset, newEntry.FileSize);
-
-                if (_customFiles.TryGetValue(oldEntry.FileName, out var overwrittenFile))
+                var newEntry = entry;
+                //logger.Debug("Before: " + newEntry.FileOffset);
+                
+                //logger.Debug("After:" + newEntry.FileOffset);
+                if (_customFiles.TryGetValue(entry.FileName, out var overwrittenFile) && !disableCustomFiles) // THIS BREAKS STUFF 
                 {
-                    //var s = new MemoryStream();
+                    newEntry.FileSize = overwrittenFile.Length;
+
+                    OffsetRange range = OffsetRange.FromStartAndLength(wad.DataSectionOffset + fileOffset, newEntry.FileSize);
                     var fileSliceStream = new FileSliceStreamW32(overwrittenFile, logger);
 
-                    logger.Debug("Adding custom file " + oldEntry.FileName + " | " + overwrittenFile.FilePath + " | " + overwrittenFile.Length);
+                    logger.Debug("Adding custom file " + entry.FileName + " | " + overwrittenFile.FilePath + " | " + overwrittenFile.Length);
 
                     pairs.Add(new(fileSliceStream, range));
                 }
                 else
                 {
-                    var originalEntry = new FileSlice(oldWadDataSectionOffset + oldEntry.FileOffset, (int)oldEntry.FileSize, wadFilepath);
+                    OffsetRange range = OffsetRange.FromStartAndLength(wad.DataSectionOffset + fileOffset, entry.FileSize);
+                    var originalEntry = new FileSlice(oldWadDataSectionOffset + entry.FileOffset, (int)entry.FileSize, wadFilepath);
                     var fs = new FileSliceStreamW32(originalEntry, logger);
                     pairs.Add(new(fs, range));
                 }
+                newEntry.FileOffset = fileOffset;
+                newFileEntries.Add(newEntry);
+
+                fileOffset += newEntry.FileSize;
             }
+            wad.FileEntries = newFileEntries;
+
+            wad.WriteHeader(headerStream);
+
+            //wad.WadStream = null;
+
+
+          
             return new MultiStream(pairs, logger);
         }
     }

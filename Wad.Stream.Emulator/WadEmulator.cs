@@ -74,9 +74,9 @@ namespace Wad.Stream.Emulator
                 stream = builder!.Build(handle, filepath, _log);
 
                 _pathToStream[filepath] = stream;
-
+                
                 emulatedFile = new EmulatedFile<MultiStream>(stream);
-
+                
                 if (DumpFiles)
                     DumpFile(filepath, stream);
 
