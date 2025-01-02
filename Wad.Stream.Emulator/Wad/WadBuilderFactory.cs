@@ -26,7 +26,8 @@ namespace Wad.Stream.Emulator.Wad
                     continue;
                 log?.Debug("Adding " + "\n  " + redirectorFolder + "\n  " +  group.Directory.FullPath + "\n     " + group.Files[0]);
                 var route = Route.GetRoute(redirectorFolder, group.Directory.FullPath);
-                route = route.Substring(0, route.IndexOf("\\"));
+                int index = route.IndexOf("\\");
+                if (index != -1) route = route.Substring(0, index); // Avoid redirector's file in the root of wad file, which will cause the route to have no "\\"
                 log?.Debug("Route: " + route);
                 _routeGroupTuples.Add(new RouteGroupTuple()
                 {
