@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using FileEmulationFramework.Lib.Utilities;
-using Reloaded.Mod.Interfaces.Structs;
 using Wad.Stream.Emulator.Template.Configuration;
 
 namespace Wad.Stream.Emulator.Configuration

@@ -1,6 +1,5 @@
 ﻿using FileEmulationFramework.Interfaces;
 using FileEmulationFramework.Lib.Utilities;
-using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
 using Wad.Stream.Emulator.Configuration;

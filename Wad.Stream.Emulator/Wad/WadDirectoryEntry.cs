@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace WadLib
 {
@@ -35,11 +31,6 @@ namespace WadLib
                 WadSubDirectoryEntry subEntry = new WadSubDirectoryEntry();
                 subEntry.ReadData(stream);
                 SubDirectories.Add(subEntry);
-                /*
-                stream.Read(int32tempbuffer);
-                int subdirNameLength = BitConverter.ToInt32(int32tempbuffer);
-                stream.Position += subdirNameLength;
-                stream.ReadByte();*/
             }
         }
 

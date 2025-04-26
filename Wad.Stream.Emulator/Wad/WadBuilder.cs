@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using FileEmulationFramework.Lib.IO;
-using FileEmulationFramework.Lib.IO.Interfaces;
+﻿using FileEmulationFramework.Lib.IO;
 using FileEmulationFramework.Lib.IO.Struct;
 using FileEmulationFramework.Lib.Utilities;
 using Microsoft.Win32.SafeHandles;
-using Reloaded.Mod.Interfaces;
 using WadLib;
 
 namespace Wad.Stream.Emulator.Wad

@@ -1,6 +1,5 @@
 ﻿using FileEmulationFramework.Lib.IO;
 using FileEmulationFramework.Lib;
-using System;
 using FileEmulationFramework.Lib.Utilities;
 
 namespace Wad.Stream.Emulator.Wad
